@@ -11,6 +11,7 @@ export default function Home({ hero,investment }) {
   );
 }
 
+
 export async function getStaticProps() {
   const data = await getHomeContent();
   return {
