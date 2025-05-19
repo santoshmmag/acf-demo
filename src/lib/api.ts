@@ -1,29 +1,30 @@
 import { request, gql } from 'graphql-request';
+import { GetPageWithAcfQuery } from '@/generated/graphql';
 
 const WP_API = 'https://nextwordpress.mmag.in/graphql';
 
-export const getHomeContent = async () => {
-  const query = gql`
-    query GetPageWithACF {
-      page(id: "home", idType: URI) {
-        title
-        heroSection {
-          mainHeading
-          subHeading
-        }
+const HOMEPAGE_QUERY = gql`
+  query GetPageWithACF {
+    page(id: "home", idType: URI) {
+      title
+      heroSection {
+        mainHeading
+        subHeading
+      }
+      investmentSection {
+        mainHeading
+        subHeading
       }
     }
-  `;
-
-  try {
-    const data = await request(WP_API, query);
-    console.log('✅ GraphQL Response:', JSON.stringify(data, null, 2));
-    return {
-      hero: data.page.heroSection,
-      investment: data.page.heroSection,
-    };
-  } catch (error) {
-    console.error('❌ GraphQL Error:', JSON.stringify(error, null, 2));
-    throw error; // rethrow to show on frontend
   }
+`;
+
+export const getHomeContent = async (): Promise<NonNullable<GetPageWithAcfQuery['page']>> => {
+  const data: GetPageWithAcfQuery = await request(WP_API, HOMEPAGE_QUERY);
+
+  if (!data.page) {
+    throw new Error('No homepage data found');
+  }
+
+  return data.page;
 };

@@ -3,6 +3,7 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --brand-color:#0228CA;
 }
 
 @theme inline {
@@ -22,5 +23,180 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
 }
+html, body {
+  font-family: 'Inter', sans-serif;
+}
+
+.hero-section {
+  position: relative;
+  min-height: 100vh;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+  padding: 40px 20px;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+  width: 100%;
+}
+
+.headline-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  margin-block-end: 100px;
+}
+
+@media (min-width: 640px) {
+  .headline-group {
+    flex-direction: row;
+    justify-content: center;
+    gap: 40px;
+    align-items: center;
+  }
+
+  .hero-pointers {
+    text-align: left;
+  }
+}
+
+.hero-yes {
+  font-size: 12vw;
+  font-weight: 900;
+  color: var(--brand-color);
+  margin: 0;
+  line-height: 1;
+}
+
+.hero-pointers p {
+  margin: 4px 0;
+  font-size: 2rem;
+  font-weight: 600;
+  color: rgba(51, 51, 51, 1);
+}
+
+.hero-subtext {
+  margin-top: 2rem;
+  font-size: 1.5rem;
+  color: #444;
+  font-weight: 600;
+}
+
+.hero-subtext .highlight {
+  color:var(--brand-color);
+  font-weight: 600;
+}
+
+.hero-form {
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+}
+
+@media (min-width: 640px) {
+  .hero-form {
+    flex-direction: row;
+    justify-content: center;
+  }
+}
+
+.hero-form input {
+  padding: 12px 16px;
+  border: 1px solid #ccc;
+  border-radius: 999px;
+  width: 260px;
+  font-size: 1rem;
+  font-family: inherit;
+  color: #333;
+}
+
+.hero-form button {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 999px;
+  background-color: var(--brand-color);
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.hero-form button:hover {
+  background-color: var(--brand-color);
+}
+
+.hero-disclaimer {
+  font-size: 0.75rem;
+  color: #777;
+  margin-top: 8px;
+}
+
+
+
+.investment-options {
+  background-color: var(--brand-color);
+  padding: 80px 20px;
+  font-family: 'Inter', sans-serif;
+  color: white;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.section-title {
+  font-size: 3.2rem;
+  font-weight: 700;
+  margin-bottom: 60px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  border-left: 1px solid rgba(255, 255, 255, 0.2);
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.grid-item {
+  padding: 40px 20px;
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.grid-item img {
+  max-width: 64px;
+  height: auto;
+  margin-bottom: 12px;
+}
+
+.grid-item span {
+  font-size: 1.5rem;
+  font-weight: 500;
+  text-align: center;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+

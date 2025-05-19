@@ -1,23 +1,27 @@
-import Hero from '@/components/Hero';
-import Investment from '@/components/Investment';
+import { GetPageWithAcfQuery } from '@/generated/graphql';
+import Hero from '@/components/hero';
+import Investment from '@/components/investment';
 import { getHomeContent } from '@/lib/api';
 
-export default function Home({ hero,investment }) {
+type Props = {
+  page: NonNullable<GetPageWithAcfQuery['page']>;
+};
+
+export default function Home({ page }: Props) {
   return (
     <>
-      <Hero data={hero} />
-      <Investment data={investment} />
+      <Hero data={page.heroSection} />
+      <Investment data={page.investmentSection} />
     </>
   );
 }
 
-
 export async function getStaticProps() {
-  const data = await getHomeContent();
+  const page = await getHomeContent();
+
   return {
     props: {
-      hero:data.hero,
-      investment:data.investment,
+      page,
     },
     revalidate: 10,
   };
